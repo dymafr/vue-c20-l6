@@ -19,6 +19,7 @@ export const useTodos = defineStore('todos', {
       this.todos.push({
         content,
         done: false,
+        editMode: false,
       });
     },
     deleteTodo(index: number) {
@@ -26,6 +27,12 @@ export const useTodos = defineStore('todos', {
     },
     toggleTodo(index: number) {
       this.todos[index].done = !this.todos[index].done;
+    },
+    updateTodo(index: number, update: Partial<Todo>) {
+      this.todos[index] = {
+        ...this.todos[index],
+        ...update,
+      };
     },
   },
 });

@@ -7,17 +7,24 @@
         <button class="btn btn-primary mr-20" @click="addTodo">Ajouter</button>
       </div>
       <ul>
-        <li
-          @click="toggleTodo(index)"
-          v-for="(todo, index) in todos"
-          class="card d-flex align-items-center"
-          :key="todo.content"
-        >
-          <input class="mr-20" :checked="todo.done" type="checkbox" />
-          <span class="flex-fill">{{ todo.content }}</span>
-          <button @click.stop="deleteTodo(index)" class="btn btn-danger">
-            Supprimer
-          </button>
+        <li v-for="(todo, index) in todos" class="card" :key="todo.content">
+          <div
+            class="d-flex align-items-center"
+            v-if="!todo.editMode"
+            @click="toggleTodo(index)"
+          >
+            <input class="mr-20" :checked="todo.done" type="checkbox" />
+            <span class="flex-fill">{{ todo.content }}</span>
+            <button
+              @click.stop="updateTodo(index, { editMode: true })"
+              class="btn btn-primary mr-20"
+            >
+              Editer
+            </button>
+            <button @click.stop="deleteTodo(index)" class="btn btn-danger">
+              Supprimer
+            </button>
+          </div>
         </li>
       </ul>
     </div>
@@ -27,6 +34,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useTodos } from './stores/todoStore';
+import { Todo } from '../interfaces/todo.interface';
 
 const input = ref<string>('');
 
@@ -44,6 +52,10 @@ function deleteTodo(index: number) {
 
 function toggleTodo(index: number) {
   todoStore.toggleTodo(index);
+}
+
+function updateTodo(index: number, update: Partial<Todo>) {
+  todoStore.updateTodo(index, update);
 }
 </script>
 
