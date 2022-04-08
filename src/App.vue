@@ -71,7 +71,7 @@ function updateTodo(index: number, update: Partial<Todo>) {
 @import './assets/scss/base.scss';
 
 .container {
-  width: 500px;
+  width: 600px;
 }
 
 li {
