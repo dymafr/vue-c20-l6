@@ -25,6 +25,13 @@
               Supprimer
             </button>
           </div>
+          <div class="d-flex align-items-center" v-else>
+            <TodoForm
+              :content="todo.content"
+              @cancel="updateTodo(index, { editMode: false })"
+              @update="updateTodo(index, { editMode: false, content: $event })"
+            />
+          </div>
         </li>
       </ul>
     </div>
@@ -35,6 +42,7 @@
 import { ref } from 'vue';
 import { useTodos } from './stores/todoStore';
 import { Todo } from '../interfaces/todo.interface';
+import TodoForm from './TodoForm.vue';
 
 const input = ref<string>('');
 
