@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex flex-fill">
     <input v-model="input" type="text" class="mr-20 flex-fill" />
-    <button @click="emit('cancel')" class="btn btn-danger mr-10">
+    <button @click="emit('cancel')" class="btn btn-danger mr-20">
       Annuler
     </button>
     <button @click="emit('update', input)" class="btn btn-primary">
