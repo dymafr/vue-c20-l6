@@ -41,7 +41,7 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { useTodos } from './stores/todoStore';
-import { Todo } from '../interfaces/todo.interface';
+import { Todo } from './interfaces/todo.interface';
 import TodoForm from './TodoForm.vue';
 
 const input = ref<string>('');
